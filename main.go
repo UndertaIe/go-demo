@@ -5,7 +5,6 @@ import (
 	"go-demo/demo"
 
 	"github.com/spf13/cobra"
-	"gorm.io/gorm"
 )
 
 var rootCmd = cobra.Command{}
@@ -15,12 +14,16 @@ func main() {
 		rootCmd.Execute()
 	}()
 	demos := map[string]func(){
-		"Insert": demo.Demo,
+		"Insert":        demo.Demo,
+		"Md5Demo":       demo.Md5Demo,
+		"TestSliceJoin": demo.TestSliceJoin,
+		"FuncType":      demo.FuncType,
+		"TestRedis":     demo.TestRedis,
 	}
 	AddDemos(demos)
 }
 
-func AddDemos(funcs map[string]func() {
+func AddDemos(funcs map[string]func()) {
 	for fn, f := range funcs {
 		AddDemo(fn, f)
 	}
@@ -41,4 +44,8 @@ func init() {
 		panic(err)
 	}
 	dbs.Db = _db
+	dbs.Conn, err = dbs.NewRedisConn()
+	if err != nil {
+		panic(err)
+	}
 }

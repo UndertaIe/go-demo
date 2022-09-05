@@ -1,6 +1,7 @@
 package dbs
 
 import (
+	"github.com/gomodule/redigo/redis"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -22,4 +23,11 @@ func NewDBEngine() (*gorm.DB, error) {
 	}
 
 	return db.Debug(), nil // Debug可以打印调用方法和sql语句
+}
+
+var Conn redis.Conn
+
+func NewRedisConn() (redis.Conn, error) {
+	conn, err := redis.Dial("tcp", ":6379")
+	return conn, err
 }
