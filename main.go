@@ -14,11 +14,13 @@ func main() {
 		rootCmd.Execute()
 	}()
 	demos := map[string]func(){
-		"Insert":        demo.Demo,
-		"Md5Demo":       demo.Md5Demo,
-		"TestSliceJoin": demo.TestSliceJoin,
-		"FuncType":      demo.FuncType,
-		"TestRedis":     demo.TestRedis,
+		"Insert":               demo.Demo,
+		"Md5Demo":              demo.Md5Demo,
+		"TestSliceJoin":        demo.TestSliceJoin,
+		"FuncType":             demo.FuncType,
+		"TestRedis":            demo.TestRedis,
+		"TestPkgCache":         demo.TestPkgCache,
+		"TestStruct2AnyAssert": demo.TestStruct2AnyAssert,
 	}
 	AddDemos(demos)
 }

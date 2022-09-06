@@ -1,5 +1,5 @@
-github.com/UndertaIe/passwd v0.0.0-20220902152000-5fcdcbb77c27 h1:s3SL0yEByt96I/HqFajX96y+JhYXlUFEdFD0AGzfty8=
-github.com/UndertaIe/passwd v0.0.0-20220902152000-5fcdcbb77c27/go.mod h1:Hsau/oX5fVZ09mEPOkAnqsmheaXoepd9EACrw/9XKKI=
+github.com/UndertaIe/passwd v1.1.1 h1:E9CxxFRj2nFkuXLcCBC1Sjinzk4xvjUvHcf7C5Twqs4=
+github.com/UndertaIe/passwd v1.1.1/go.mod h1:uXDY0c0t4NY0wFs8Kh8KzmrrPhWmpPURCLR67gsPhvA=
 github.com/cpuguy83/go-md2man/v2 v2.0.2/go.mod h1:tgQtvFlXSQOSOSIRvRPT7W67SCa46tRHOmNcaadrF8o=
 github.com/davecgh/go-spew v1.1.0 h1:ZDRjVQ15GmhC3fiQ8ni8+OwkZQO4DARzQgrnXU1Liz8=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
