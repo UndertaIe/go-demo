@@ -1,8 +1,9 @@
 package main
 
 import (
-	"go-demo/dbs"
-	"go-demo/demo"
+	"fmt"
+	"go/importer"
+	"go/types"
 
 	"github.com/spf13/cobra"
 )
@@ -13,16 +14,27 @@ func main() {
 	defer func() {
 		rootCmd.Execute()
 	}()
-	demos := map[string]func(){
-		"Insert":               demo.Demo,
-		"Md5Demo":              demo.Md5Demo,
-		"TestSliceJoin":        demo.TestSliceJoin,
-		"FuncType":             demo.FuncType,
-		"TestRedis":            demo.TestRedis,
-		"TestPkgCache":         demo.TestPkgCache,
-		"TestStruct2AnyAssert": demo.TestStruct2AnyAssert,
+	pkg, err := importer.Default().Import("time")
+	if err != nil {
+		fmt.Printf("error: %s\n", err.Error())
+		return
 	}
-	AddDemos(demos)
+	scope := pkg.Scope()
+	for _, name := range scope.Names() {
+		if name == "Time" {
+			obj := scope.Lookup(name)
+			if tn, ok := obj.Type().(*types.Named); ok {
+				for i := 0; i < tn.NumMethods(); i++ {
+					fmt.Println()
+					m := tn.Method(i)
+					m.Pkg()
+					m.FullName()
+					m.Exported()
+				}
+				fmt.Printf("%#v\n", tn.NumMethods())
+			}
+		}
+	}
 }
 
 func AddDemos(funcs map[string]func()) {
@@ -38,16 +50,4 @@ func AddDemo(fn string, f func()) {
 		},
 		Use: fn,
 	})
-}
-
-func init() {
-	_db, err := dbs.NewDBEngine()
-	if err != nil {
-		panic(err)
-	}
-	dbs.Db = _db
-	dbs.Conn, err = dbs.NewRedisConn()
-	if err != nil {
-		panic(err)
-	}
 }

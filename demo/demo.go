@@ -1,17 +1,23 @@
 package demo
 
 import (
-	"crypto"
 	"fmt"
-
-	"github.com/UndertaIe/passwd/pkg/utils"
+	"reflect"
 )
 
-func Demo() {
-	fmt.Println("this is a demo")
+func Desc() string {
+	return "demo desc"
 }
 
-func Md5Demo() {
-	s := utils.Hash(crypto.MD5, "21")
-	fmt.Println("md5(21)=", s)
+type D int
+
+func R() {
+	t := reflect.ValueOf(new(D))
+	v := reflect.TypeOf(new(D))
+	for i := 0; i < t.NumMethod(); i++ {
+		mv := t.Method(i)
+		fmt.Println(v.Method(i).Name)
+		mv.Call(make([]reflect.Value, 0))
+
+	}
 }
