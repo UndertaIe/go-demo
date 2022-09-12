@@ -1,23 +1,47 @@
 package demo
 
 import (
+	"bytes"
 	"fmt"
 	"reflect"
+
+	"github.com/spf13/cobra"
 )
 
-func Desc() {
-	fmt.Println("demo desc")
+var Rdemo = new(cobra.Command)
+
+type demo interface {
+	Desc() string
+	Name() string
 }
 
-type D int
+func Demo(rdemo *cobra.Command, d demo) {
+	v := reflect.ValueOf(d)
+	t := reflect.TypeOf(d)
 
-func R() {
-	t := reflect.ValueOf(new(D))
-	v := reflect.TypeOf(new(D))
-	for i := 0; i < t.NumMethod(); i++ {
-		mv := t.Method(i)
-		fmt.Println(v.Method(i).Name)
-		mv.Call(make([]reflect.Value, 0))
-
+	cmd := &cobra.Command{
+		Run: func(cmd *cobra.Command, args []string) {
+			fmt.Println(d.Desc())
+		},
+		Use:   d.Name(),
+		Short: d.Desc(),
+		Long:  d.Desc(),
 	}
+	for i := 0; i < v.NumMethod(); i++ {
+		m := t.Method(i)
+		b := bytes.NewBufferString(m.PkgPath)
+		b.WriteString(":")
+		b.WriteString(m.Name)
+		vv := v.Method(i) //回调函数要尽量避免使用外部的参数
+		cmd.AddCommand(&cobra.Command{
+			Run: func(cmd *cobra.Command, args []string) {
+				// v.Method(i).Call(make([]reflect.Value, 0)) // error: 这种写法会导致回调函数会依赖外部的i参数，当真正执行时会i跟之前遍历时不一样
+				vv.Call(make([]reflect.Value, 0))
+			},
+			Use:   m.Name,
+			Short: b.String(),
+			Long:  b.String(),
+		})
+	}
+	rdemo.AddCommand(cmd)
 }

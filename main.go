@@ -2,33 +2,16 @@ package main
 
 import (
 	"github.com/UndertaIe/go-demo/demo"
-
-	"github.com/spf13/cobra"
+	"github.com/UndertaIe/go-demo/demo/sdk/logger"
 )
 
-var rootCmd = cobra.Command{}
-
+// =========== 加载示例 ===========
 func main() {
 	defer func() {
-		rootCmd.Execute()
+		demo.Rdemo.Execute()
 	}()
-	demos := map[string]func(){
-		"Insert": demo.Desc,
-	}
-	AddDemos(demos)
-}
 
-func AddDemos(funcs map[string]func()) {
-	for fn, f := range funcs {
-		AddDemo(fn, f)
-	}
-}
+	log := new(logger.L)
+	demo.Demo(demo.Rdemo, log)
 
-func AddDemo(fn string, f func()) {
-	rootCmd.AddCommand(&cobra.Command{
-		Run: func(cmd *cobra.Command, args []string) {
-			f()
-		},
-		Use: fn,
-	})
 }
