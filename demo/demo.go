@@ -5,8 +5,8 @@ import (
 	"reflect"
 )
 
-func Desc() string {
-	return "demo desc"
+func Desc() {
+	fmt.Println("demo desc")
 }
 
 type D int
