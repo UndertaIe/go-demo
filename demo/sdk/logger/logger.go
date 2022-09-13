@@ -21,7 +21,7 @@ func (l L) DefaultOfLogger() {
 	log.Println("std log msg")
 }
 
-var filename = "./logs/newlogger.log"
+var filename = "./logs/log.log"
 
 func (l L) NewOfLogger() {
 	dirname := filepath.Dir(filename)
