@@ -2,7 +2,6 @@ package demo
 
 import (
 	"bytes"
-	"fmt"
 	"reflect"
 
 	"github.com/spf13/cobra"
@@ -15,13 +14,13 @@ type demo interface {
 	Name() string
 }
 
-func Demo(rdemo *cobra.Command, d demo) {
+func Fire(rdemo *cobra.Command, d demo) {
 	v := reflect.ValueOf(d)
 	t := reflect.TypeOf(d)
 
 	cmd := &cobra.Command{
 		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Println(d.Desc())
+			cmd.Help()
 		},
 		Use:   d.Name(),
 		Short: d.Desc(),

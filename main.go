@@ -16,7 +16,7 @@ func main() {
 		demo.Rdemo.Execute()
 	}()
 
-	demo.Demo(demo.Rdemo, new(core.Core))
-	demo.Demo(demo.Rdemo, new(logger.L))
+	demo.Fire(demo.Rdemo, new(core.Core))
+	demo.Fire(demo.Rdemo, new(logger.L))
 
 }
