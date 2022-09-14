@@ -52,7 +52,7 @@ func callByAssertStructPointer(ifa interface{}) {
 // 结论是    类型断言只能断言转换接口之前的类型 传入类型为指针则断言指针，传入为struct则断言struct，
 //			对于调用对应的接口方法则无区别，struct指针和struct自身都可以调用，但struct指针可以改变接收者本身，而struct则不能，适用于接收者传入和参数传入
 // 深入到go底层：对于转换为interface类型其中包含两个值：接口类型以及数据指针
-func TestStruct2AnyAssert() {
+func (c Core) TestStruct2AnyAssert() {
 	s := Stru{A: "123"}
 	callF(s)
 	callF(&s)
@@ -95,7 +95,7 @@ func (c Cat) Eat() {
 	fmt.Println("eat something")
 }
 
-func StructPointerTest() {
+func (c Core) StructPointerTest() {
 
 	var d1 = Cat{}
 	var d2 = &Cat{}

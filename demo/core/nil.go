@@ -16,7 +16,7 @@ type Reader interface {
 
 // go source: nil是一个预先声明的标识符，表示指针、通道、函数、接口、映射或切片类型。
 // 总结：nil是指针、映射、切片、通道，函数、接口的零值
-func NilTest() {
+func (c Core) NilTest() {
 	var s TestStruct
 	fmt.Println(NilOrNot(s)) // #=> false
 	// fmt.Println(s == nil)    // #=> true
