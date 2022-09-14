@@ -55,3 +55,9 @@ func (l L) LumberjackForLogrus() {
 		nlog.Infof("rolling msg for logrus: %d \n", i)
 	}
 }
+
+
+
+
+
+
