@@ -30,7 +30,7 @@ func Demo(rdemo *cobra.Command, d demo) {
 	for i := 0; i < v.NumMethod(); i++ {
 		m := t.Method(i)
 		b := bytes.NewBufferString(m.PkgPath)
-		b.WriteString(":")
+		// b.WriteString(":")
 		b.WriteString(m.Name)
 		vv := v.Method(i) //回调函数要尽量避免使用外部的参数
 		cmd.AddCommand(&cobra.Command{
