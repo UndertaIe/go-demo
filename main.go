@@ -7,6 +7,7 @@ import (
 )
 
 // =========== 加载示例 ===========
+// 运行log包的Desc函数
 // go run main.go log Desc
 // go run main.go core Desc
 // go run main.go --help
