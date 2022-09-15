@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/UndertaIe/go-demo/demo"
 	"github.com/UndertaIe/go-demo/demo/core"
+	"github.com/UndertaIe/go-demo/demo/sdk/gorm"
 	"github.com/UndertaIe/go-demo/demo/sdk/logger"
 )
 
@@ -19,5 +20,6 @@ func main() {
 
 	demo.Fire(demo.Rdemo, new(core.Core))
 	demo.Fire(demo.Rdemo, new(logger.L))
+	demo.Fire(demo.Rdemo, new(gorm.G))
 
 }
