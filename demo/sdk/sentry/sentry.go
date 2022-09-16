@@ -19,7 +19,7 @@ func (s S) Name() string {
 }
 
 func (s S) Setup() {
-	url := "https://hub.docker.com/_/sentry"
+	url := "https://hub.docker.com/_/sentry#:~:text=How%20to%20setup%20a%20full%20Sentry%20instance"
 	fmt.Println(url)
 }
 
