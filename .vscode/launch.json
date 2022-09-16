@@ -10,7 +10,7 @@
             "request": "launch",
             "mode": "auto",
             "program": "${fileDirname}",
-            "args": ["logger", "BasicOfZap"]
+            "args": ["sentry", "DemoOfSentry"]
         }
     ]
 }

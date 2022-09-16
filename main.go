@@ -5,6 +5,7 @@ import (
 	"github.com/UndertaIe/go-demo/demo/core"
 	"github.com/UndertaIe/go-demo/demo/sdk/gorm"
 	"github.com/UndertaIe/go-demo/demo/sdk/logger"
+	"github.com/UndertaIe/go-demo/demo/sdk/sentry"
 )
 
 // =========== 加载示例 ===========
@@ -21,5 +22,6 @@ func main() {
 	demo.Fire(demo.Rdemo, new(core.Core))
 	demo.Fire(demo.Rdemo, new(logger.L))
 	demo.Fire(demo.Rdemo, new(gorm.G))
+	demo.Fire(demo.Rdemo, new(sentry.S))
 
-}
+} 
