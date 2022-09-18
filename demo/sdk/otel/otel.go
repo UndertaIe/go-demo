@@ -1,4 +1,4 @@
-package jaeger
+package otel
 
 import (
 	"context"
@@ -32,9 +32,7 @@ const (
 //                          =============== span<Write> ===============
 //                          ====== span<Fibonacci> ======
 
-// ====================================================================
-
-func (j J) MainOfOpenTelemety() {
+func (o O) MainOfOpenTelemety() {
 	l := log.New(os.Stdout, "", 0)
 
 	// Write telemetry data to a file.
@@ -44,14 +42,30 @@ func (j J) MainOfOpenTelemety() {
 	}
 	defer f.Close()
 
-	exporter, err := newExporter(f)
+	// stdout exporter
+	exporter, err := stdouttrace.New(
+		stdouttrace.WithWriter(f), // 说实话不支持函数命名参数有点尴尬，常用Option模式创建不定参数初始化的对象
+		// Use human-readable output.
+		stdouttrace.WithPrettyPrint(),
+		// Do not print timestamps for the demo.
+		stdouttrace.WithoutTimestamps(),
+	)
 	if err != nil {
 		l.Fatal(err)
 	}
-
+	resource.Empty()
+	r, _ := resource.Merge(
+		resource.Default(),
+		resource.NewWithAttributes(
+			semconv.SchemaURL,
+			semconv.ServiceNameKey.String("fib"),
+			semconv.ServiceVersionKey.String("v0.1.0"),
+			attribute.String("environment", "demo"),
+		),
+	)
 	tp := tracer.NewTracerProvider(
 		tracer.WithBatcher(exporter),
-		tracer.WithResource(newResource()),
+		tracer.WithResource(r),
 	)
 	defer func() {
 		if err := tp.Shutdown(context.Background()); err != nil {
@@ -66,14 +80,16 @@ func (j J) MainOfOpenTelemety() {
 	errCh := make(chan error)
 	app := NewApp(os.Stdin, l)
 	go func() {
-		errCh <- app.Run(context.Background())
+		errCh <- app.Run(context.Background()) //
 	}()
 
 	select {
-	case <-sigCh:
+	case <-sigCh: // 捕获中断信号
+		tp.ForceFlush(context.Background())
 		l.Println("\ngoodbye")
 		return
-	case err := <-errCh:
+	case err := <-errCh: // 接收chan信息
+		tp.ForceFlush(context.Background()) // immediately exports all spans
 		if err != nil {
 			l.Fatal(err)
 		}
@@ -100,7 +116,6 @@ func (a *App) Run(ctx context.Context) error {
 			span.End()
 			return err
 		}
-
 		a.Write(newCtx, n)
 		span.End()
 	}
@@ -164,27 +179,4 @@ func Fibonacci(n uint) (uint64, error) {
 	}
 
 	return n2 + n1, nil
-}
-
-func newExporter(w io.Writer) (tracer.SpanExporter, error) {
-	return stdouttrace.New(
-		stdouttrace.WithWriter(w),
-		// Use human-readable output.
-		stdouttrace.WithPrettyPrint(),
-		// Do not print timestamps for the demo.
-		stdouttrace.WithoutTimestamps(),
-	)
-}
-
-func newResource() *resource.Resource {
-	r, _ := resource.Merge(
-		resource.Default(),
-		resource.NewWithAttributes(
-			semconv.SchemaURL,
-			semconv.ServiceNameKey.String("fib"),
-			semconv.ServiceVersionKey.String("v0.1.0"),
-			attribute.String("environment", "demo"),
-		),
-	)
-	return r
 }
