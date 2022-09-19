@@ -66,7 +66,7 @@ func (c Core) TestStruct2AnyAssert() {
 	var i interface{}
 	var j interface{}
 	i = "mikasa"
-	fmt.Println(i == j)
+	// fmt.Println(i == j) //false
 	var z InterfaceA
 	fmt.Println(j == z)
 	passNil(i)

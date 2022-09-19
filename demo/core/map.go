@@ -18,7 +18,8 @@ func (c Core) SetNilMapPanic() {
 	if m == nil {
 		fmt.Println("sli is nil")
 	}
-	m["1"] = 2
+	// m["1"] = 2 // assignment to nil map (SA5000)go-staticcheck
+
 } // panic: assignment to entry in nil map
 
 func (c Core) SetMakeMap() {
