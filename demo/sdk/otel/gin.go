@@ -30,7 +30,7 @@ func (o O) GinDemoOfOtel() {
 			log.Printf("Error shutting down tracer provider: %v", err)
 		}
 	}()
-	
+
 	r := gin.New()
 	r.Use(otelgin.Middleware("my-server"))
 	tmplName := "user"
@@ -68,6 +68,7 @@ func getUser(c *gin.Context, id string) string {
 	// where required. It is available from gin.Context.Request.Context()
 	_, span := GinTracer.Start(c.Request.Context(), "getUser", oteltrace.WithAttributes(attribute.String("id", id)))
 	defer span.End()
+
 	if id == "123" {
 		return "otelgin tester"
 	}
