@@ -31,3 +31,18 @@ func (c Core) SetMakeMap() {
 	m["1"] = 2
 	fmt.Println(m)
 } // panic: assignment to entry in nil map
+
+func (c Core) GetValUsingNonexistentKeyFromMap() {
+	var m = map[string]int{"1": 1}
+	fmt.Println(m["2"]) // using non-existent key from map, will get default value of the corresponding type
+} // output: 0
+
+func (c Core) ConcurrentWriteOfMap() {
+	var m = map[string]int{"1": 1}
+	for i := 0; i < 1000; i++ {
+		go func(x int) {
+			m["1"] = x
+		}(i)
+	}
+	fmt.Println(m)
+} // fatal error: concurrent map writes
