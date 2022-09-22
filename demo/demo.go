@@ -14,7 +14,7 @@ type demo interface {
 	Name() string
 }
 
-func Fire(rdemo *cobra.Command, d demo) {
+func Fire(rdemo *cobra.Command, d demo) *cobra.Command {
 	v := reflect.ValueOf(d)
 	t := reflect.TypeOf(d)
 
@@ -43,4 +43,5 @@ func Fire(rdemo *cobra.Command, d demo) {
 		})
 	}
 	rdemo.AddCommand(cmd)
+	return cmd
 }
