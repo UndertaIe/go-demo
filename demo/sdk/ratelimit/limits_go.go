@@ -31,9 +31,12 @@ func (c *redisClient) RateScriptLoad(ctx context.Context, script string) (string
 
 func (r R) DemoOfLimitGo() {
 	client := redis.NewClient(&redis.Options{
-		Addr: "localhost:6379",
+		Password: "redis",
+		Addr:     "localhost:6379",
 	})
+	ctx := context.TODO()
 	limiter := ratelimiter.New(ratelimiter.Options{
+		Ctx:      ctx,
 		Max:      10,
 		Duration: time.Minute, // limit to 1000 requests in 1 minute.
 		Client:   &redisClient{client},
@@ -53,16 +56,16 @@ func (r R) DemoOfLimitGo() {
 
 		if res.Remaining >= 0 {
 			w.WriteHeader(200)
-			_, _ = fmt.Fprintf(w, "Path: %q\n", html.EscapeString(r.URL.Path))
-			_, _ = fmt.Fprintf(w, "Remaining: %d\n", res.Remaining)
-			_, _ = fmt.Fprintf(w, "Total: %d\n", res.Total)
-			_, _ = fmt.Fprintf(w, "Duration: %v\n", res.Duration)
-			_, _ = fmt.Fprintf(w, "Reset: %v\n", res.Reset)
+			fmt.Fprintf(w, "Path: %q\n", html.EscapeString(r.URL.Path))
+			fmt.Fprintf(w, "Remaining: %d\n", res.Remaining)
+			fmt.Fprintf(w, "Total: %d\n", res.Total)
+			fmt.Fprintf(w, "Duration: %v\n", res.Duration)
+			fmt.Fprintf(w, "Reset: %v\n", res.Reset)
 		} else {
 			after := int64(res.Reset.Sub(time.Now())) / 1e9
 			header.Set("Retry-After", strconv.FormatInt(after, 10))
 			w.WriteHeader(429)
-			_, _ = fmt.Fprintf(w, "Rate limit exceeded, retry in %d seconds.\n", after)
+			fmt.Fprintf(w, "Rate limit exceeded, retry in %d seconds.\n", after)
 		}
 	})
 	log.Fatal(http.ListenAndServe(":8080", nil))

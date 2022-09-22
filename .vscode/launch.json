@@ -10,7 +10,7 @@
             "request": "launch",
             "mode": "auto",
             "program": "${fileDirname}",
-            "args": ["sentry", "DemoOfSentry"]
+            "args": ["ratelimit8965", "DemoOfLimitGo"]
         }
     ]
 }
