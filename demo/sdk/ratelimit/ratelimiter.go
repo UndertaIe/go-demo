@@ -1,18 +1,21 @@
-package ratelimter
+package ratelimit
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type R struct{}
 
 func (r R) Desc() string {
-	return "sentry示例"
+	return "桶限流算法实现"
 }
 
 func (r R) Name() string {
-	return "sentry"
+	return "ratelimit8965"
 }
 
 func (r R) Repo() string {
 	url := "https://github.com/juju/ratelimit"
 	fmt.Println(url)
+	return url
 }
