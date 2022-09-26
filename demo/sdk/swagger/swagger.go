@@ -4,23 +4,23 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/UndertaIe/go-demo/docs"
 	"github.com/gin-gonic/gin"
-	// docs "github.com/go-project-name/docs"
 	swaggerfiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
-type Sw struct{}
+type S struct{}
 
-func (s Sw) Desc() string {
+func (s S) Desc() string {
 	return "swagger接口文档示例"
 }
 
-func (s Sw) Name() string {
+func (s S) Name() string {
 	return "swagger"
 }
 
-func (s Sw) ReadMe() {
+func (s S) ReadMe() {
 	url := "https://github.com/swaggo/gin-swagger"
 	fmt.Println(url)
 }
@@ -41,9 +41,12 @@ func Helloworld(g *gin.Context) {
 	g.JSON(http.StatusOK, "helloworld")
 }
 
-func (s Sw) DemoOfSwagger() {
+// go install github.com/swaggo/swag/cmd/swag@latest
+// swag init
+// go run main.go swagger DemoOfSwagger
+func (s S) DemoOfSwagger() {
 	r := gin.Default()
-	// docs.SwaggerInfo.BasePath = "/api/v1"
+	docs.SwaggerInfo.BasePath = "/api/v1"
 	v1 := r.Group("/api/v1")
 	{
 		eg := v1.Group("/example")
@@ -53,5 +56,4 @@ func (s Sw) DemoOfSwagger() {
 	}
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 	r.Run(":8080")
-
 }

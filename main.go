@@ -9,6 +9,7 @@ import (
 	"github.com/UndertaIe/go-demo/demo/sdk/logger"
 	"github.com/UndertaIe/go-demo/demo/sdk/ratelimit"
 	"github.com/UndertaIe/go-demo/demo/sdk/sentry"
+	"github.com/UndertaIe/go-demo/demo/sdk/swagger"
 )
 
 // =========== 加载示例 ===========
@@ -30,5 +31,7 @@ func main() {
 	demo.Fire(demo.Rdemo, new(gorm.G))
 	demo.Fire(demo.Rdemo, new(ratelimit.R))
 	demo.Fire(demo.Rdemo, new(lib.Lib))
+
+	demo.Fire(demo.Rdemo, new(swagger.S))
 
 }
