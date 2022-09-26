@@ -7,6 +7,7 @@ import (
 	"github.com/UndertaIe/go-demo/demo/sdk/gorm"
 	"github.com/UndertaIe/go-demo/demo/sdk/jaeger"
 	"github.com/UndertaIe/go-demo/demo/sdk/logger"
+	"github.com/UndertaIe/go-demo/demo/sdk/prometheus"
 	"github.com/UndertaIe/go-demo/demo/sdk/ratelimit"
 	"github.com/UndertaIe/go-demo/demo/sdk/sentry"
 	"github.com/UndertaIe/go-demo/demo/sdk/swagger"
@@ -31,7 +32,7 @@ func main() {
 	demo.Fire(demo.Rdemo, new(gorm.G))
 	demo.Fire(demo.Rdemo, new(ratelimit.R))
 	demo.Fire(demo.Rdemo, new(lib.Lib))
-
 	demo.Fire(demo.Rdemo, new(swagger.S))
+	demo.Fire(demo.Rdemo, new(prometheus.P))
 
 }
