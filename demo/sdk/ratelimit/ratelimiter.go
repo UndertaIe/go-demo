@@ -10,6 +10,7 @@ func (r R) Desc() string {
 	return "桶限流算法实现"
 }
 
+// why call ratelimit8965? Just because my cat jumped on the keyboard
 func (r R) Name() string {
 	return "ratelimit8965"
 }
