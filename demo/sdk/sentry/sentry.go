@@ -23,6 +23,7 @@ func (s S) Setup() {
 	fmt.Println(url)
 }
 
+// visit http://192.168.3.200:9000/sentry/
 func (s S) DemoOfSentry() {
 	err := sentry.Init(sentry.ClientOptions{
 		Dsn:   "http://23dbc042add54e3db870c63fa03d470e@192.168.3.200:9000/2",
