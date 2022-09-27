@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"reflect"
 )
 
 func (c Core) NestedRecover() {
@@ -32,6 +33,8 @@ func (c Core) NestedRecoverFromRePanic() {
 	defer func() {
 		if err := recover(); err != nil {
 			fmt.Println("NestedRecover")
+			fmt.Println(reflect.ValueOf(err))
+			fmt.Println(err)
 		}
 	}()
 	fmt.Println(1)

@@ -9,8 +9,9 @@
             "type": "go",
             "request": "launch",
             "mode": "auto",
-            "program": "${fileDirname}",
-            "args": ["ratelimit8965", "DemoOfLimitGo"]
+            // "program": "${fileDirname}",
+            "program": "main.go",
+            "args": ["core", "NestedRecoverFromRePanic"]
         }
     ]
 }
