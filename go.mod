@@ -3,6 +3,7 @@ module github.com/UndertaIe/go-demo
 go 1.18
 
 require (
+	github.com/cstockton/go-conv v1.0.0
 	github.com/getsentry/sentry-go v0.13.0
 	github.com/gin-gonic/gin v1.8.1
 	github.com/go-redis/redis/v8 v8.11.5
