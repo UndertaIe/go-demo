@@ -9,10 +9,12 @@ require (
 	github.com/go-redis/redis/v8 v8.11.5
 	github.com/gomodule/redigo v1.8.9
 	github.com/ilam01/limits-go v1.0.0
+	github.com/jasonlvhit/gocron v0.0.1
 	github.com/lestrrat-go/apache-logformat v2.0.4+incompatible
 	github.com/lestrrat-go/file-rotatelogs v2.4.0+incompatible
 	github.com/ozgio/strutil v0.4.0
 	github.com/prometheus/client_golang v1.13.0
+	github.com/robfig/cron/v3 v3.0.1
 	github.com/sirupsen/logrus v1.9.0
 	github.com/spf13/cobra v1.5.0
 	github.com/swaggo/files v0.0.0-20220728132757-551d4a08d97a

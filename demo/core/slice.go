@@ -36,7 +36,4 @@ func (c Core) RangeKVofSlice() {
 		fmt.Println(v, " ")
 	}
 	fmt.Println("==========")
-	for k, _ := range sli {
-		fmt.Println(k, " ")
-	}
 } // ok
