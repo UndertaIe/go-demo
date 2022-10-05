@@ -5,11 +5,11 @@ import (
 	"github.com/UndertaIe/go-demo/demo/core"
 	"github.com/UndertaIe/go-demo/demo/lib"
 	"github.com/UndertaIe/go-demo/demo/sdk/convert"
-	"github.com/UndertaIe/go-demo/demo/sdk/cronsdk"
 	"github.com/UndertaIe/go-demo/demo/sdk/gorm"
 	"github.com/UndertaIe/go-demo/demo/sdk/jaeger"
 	"github.com/UndertaIe/go-demo/demo/sdk/logger"
 	"github.com/UndertaIe/go-demo/demo/sdk/prometheus"
+	"github.com/UndertaIe/go-demo/demo/sdk/protocolbuffer"
 	"github.com/UndertaIe/go-demo/demo/sdk/ratelimit"
 	"github.com/UndertaIe/go-demo/demo/sdk/sentry"
 	"github.com/UndertaIe/go-demo/demo/sdk/swagger"
@@ -37,6 +37,6 @@ func main() {
 	demo.Fire(demo.Rdemo, new(swagger.S))
 	demo.Fire(demo.Rdemo, new(prometheus.P))
 	demo.Fire(demo.Rdemo, new(convert.C))
-	demo.Fire(demo.Rdemo, new(cronsdk.C))
+	demo.Fire(demo.Rdemo, new(protocolbuffer.PB))
 
 }
