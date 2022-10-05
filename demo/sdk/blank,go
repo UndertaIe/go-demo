@@ -1,0 +1,16 @@
+package sdk
+
+type S struct{}
+
+func (b S) Desc() string {
+	return "desc"
+}
+
+func (s S) Name() string {
+	return "name"
+}
+
+func (s S) ReadMe() {
+	url := ""
+	fmt.Println(url)
+}
