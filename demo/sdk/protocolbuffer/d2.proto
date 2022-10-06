@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package person;
+
+option go_package = "./;protocolbuffer"; // 注释翻译的输出目录(./)和go的包名(protocolbuffer)
+
+/* 
+    this is comment
+*/
+
+message NewPerson {
+    string email = 3; // default message rule: singular 当为字段类型默认值时，不会被序列化
+    repeated string name = 1; // 切片
+    optional int32 id = 2; //  设置值则该字段可被序列化；不设置值则不被序列化，返回默认值
+    
+}
+
+message Outer {                  // Level 0
+    message MiddleAA {  // Level 1
+      message Inner {   // Level 2
+        int64 ival = 1;
+        bool  booly = 2;
+      }
+    }
+    message MiddleBB {  // Level 1
+      message Inner {   // Level 2
+        int32 ival = 1;
+        bool  booly = 2;
+      }
+    }
+}
+
+message SampleMessage {
+    oneof test_oneof {
+      string name = 4;
+      string sub_message = 9;
+    }
+  }

@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package protocolbuffer;
+
+option go_package = "./;protocolbuffer";
+
+message Request {
+    string query = 1;
+    int32 page_number = 2;
+    int32 result_per_page = 3;
+}
+
+message Response {
+    int32 status_code = 1;
+    string body = 2;
+}
+
+service SearchService {
+    rpc Search(Request) returns (Response);
+}

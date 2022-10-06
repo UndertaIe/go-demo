@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package protocolbuffer;
+
+// recommand way
+option go_package = "/pb"; // pb输出目录(./pb)和默认包名 pb
+
+// cmd: protoc --go_out=demo/sdk/protocolbuffer/ demo/sdk/protocolbuffer/pack.proto
+// create pack.pb.go in current directory
+message PackageInProtoFile {
+    optional int32 id = 2; 
+    
+}

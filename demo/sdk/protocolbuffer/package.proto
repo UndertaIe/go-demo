@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package protocolbuffer;
+
+
+// note: protoc --go_out=demo/sdk/protocolbuffer/  --go_opt=Mdemo/sdk/protocolbuffer/package.proto=gen/  demo/sdk/protocolbuffer/package.proto
+// 在当前目录下创建 gen目录 存放生成的包名为gen的go pb代码
+
+message NewPackage {
+    optional int32 id = 2; 
+    
+}

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 
-	"github.com/golang/protobuf/proto"
+	"google.golang.org/protobuf/proto"
 )
 
 type PB struct{}
@@ -14,7 +14,7 @@ func (b PB) Desc() string {
 }
 
 func (b PB) Name() string {
-	return "protocolbuffer"
+	return "pb"
 }
 
 func (b PB) Docs() {
@@ -27,8 +27,18 @@ func (b PB) Demo() {
 		Name:  "mikasa",
 		Id:    1,
 		Email: "xxx@email.com",
+		Phones: []*PhoneNumber{
+			{
+				Type:   PhoneType_MOBILE,
+				Number: "123456",
+			},
+			{
+				Type:   PhoneType_WORK,
+				Number: "1234567",
+			},
+		},
 	}
-	fmt.Println("proto.marshal Person: ", p)
+	fmt.Println("proto.marshal Person: ", p.Id, p.Name, p.Email, p.Phones)
 	bytes, err := proto.Marshal(&p)
 	if err != nil {
 		panic(err)
@@ -42,5 +52,5 @@ func (b PB) Demo() {
 
 	var p2 Person
 	proto.Unmarshal(bytes2, &p2)
-	fmt.Println("proto.Unmarshal result: ", p2)
+	fmt.Println("proto.Unmarshal result: ", p.Id, p.Name, p.Email, p.Phones)
 }
