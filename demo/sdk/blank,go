@@ -4,15 +4,18 @@ import "fmt"
 
 type Blank struct{}
 
-func (b Blank) Desc() string {
+// 命令描述
+func (Blank) Desc() string {
 	return "desc"
 }
 
-func (b Blank) Name() string {
+// 子命令
+func (Blank) Name() string {
 	return "name"
 }
 
-func (b Blank) ReadMe() {
+// 文档
+func (Blank) Docs() {
 	url := ""
 	fmt.Println(url)
 }
