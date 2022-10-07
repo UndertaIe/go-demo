@@ -1,16 +1,18 @@
 package sdk
 
-type S struct{}
+import "fmt"
 
-func (b S) Desc() string {
+type Blank struct{}
+
+func (b Blank) Desc() string {
 	return "desc"
 }
 
-func (s S) Name() string {
+func (b Blank) Name() string {
 	return "name"
 }
 
-func (s S) ReadMe() {
+func (b Blank) ReadMe() {
 	url := ""
 	fmt.Println(url)
 }
