@@ -25,13 +25,21 @@ func (H) Name() string {
 
 func (H) Docs() {
 	docsUrl := "https://grpc.io/docs/languages/go/quickstart/"
+	generatedCodeUrl := "https://grpc.io/docs/languages/go/generated-code/"
 	fmt.Println(docsUrl)
+	fmt.Println("Generated-code reference: ", generatedCodeUrl)
 }
 
-/*
+/* cmd: .proto to helloworld.pb.go and helloworld_grpc.pb.go
 protoc --go_out=. --go_opt=paths=source_relative \
     --go-grpc_out=. --go-grpc_opt=paths=source_relative \
     helloworld/helloworld.proto
+
+	// link: https://pkg.go.dev/google.golang.org/grpc/cmd/protoc-gen-go-grpc#section-readme:~:text=start%20guide.-,Future%2Dproofing%20services,-By%20default%2C%20to
+	require_unimplemented_servers=false present that GreeterServer interface dont has mustEmbedUnimplementedGreeterServer method
+protoc  --go_out=. --go_opt=paths=source_relative \
+        --go-grpc_out=. --go-grpc_opt=paths=source_relative,require_unimplemented_servers=false \
+		helloworld/helloworld.proto
 */
 type server struct {
 	UnimplementedGreeterServer
