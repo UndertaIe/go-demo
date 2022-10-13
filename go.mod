@@ -3,6 +3,7 @@ module github.com/UndertaIe/go-demo
 go 1.18
 
 require (
+	github.com/PuerkitoBio/goquery v1.8.0
 	github.com/cstockton/go-conv v1.0.0
 	github.com/getsentry/sentry-go v0.13.0
 	github.com/gin-gonic/gin v1.8.1
@@ -39,6 +40,7 @@ require (
 require (
 	github.com/BurntSushi/toml v1.2.0 // indirect
 	github.com/KyleBanks/depth v1.2.1 // indirect
+	github.com/andybalholm/cascadia v1.3.1 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
 	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
@@ -78,6 +80,9 @@ require (
 	github.com/prometheus/common v0.37.0 // indirect
 	github.com/prometheus/procfs v0.8.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
+	github.com/tidwall/gjson v1.14.3 // indirect
+	github.com/tidwall/match v1.1.1 // indirect
+	github.com/tidwall/pretty v1.2.0 // indirect
 	github.com/ugorji/go/codec v1.2.7 // indirect
 	go.opentelemetry.io/otel/metric v0.32.0 // indirect
 	go.uber.org/atomic v1.7.0 // indirect
