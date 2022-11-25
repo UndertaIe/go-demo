@@ -37,3 +37,25 @@ func (c Core) RangeKVofSlice() {
 	}
 	fmt.Println("==========")
 } // ok
+
+func (c Core) BadCopy() {
+	src := []int{1, 2, 3}
+	var dst []int
+	copy(dst, src)
+	fmt.Println(src)
+	fmt.Println(dst)
+} // msg:  Copy returns the number of elements copied, which will be the minimum of len(src) and len(dst).
+
+// [1 2 3]
+// []
+
+func (c Core) RightCopy() {
+	src := []int{1, 2, 3}
+	dst := make([]int, len(src))
+	fmt.Println("current src: ", src)
+	fmt.Println("current dst: ", dst)
+	copy(dst, src)
+	fmt.Println("after copy, src: ", src)
+	fmt.Println("after copy, dst: ", dst)
+} // [1 2 3]
+// [1 2 3]

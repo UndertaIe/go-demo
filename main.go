@@ -5,6 +5,7 @@ import (
 	"github.com/UndertaIe/go-demo/demo/core"
 	"github.com/UndertaIe/go-demo/demo/lib"
 	"github.com/UndertaIe/go-demo/demo/sdk/convert"
+	"github.com/UndertaIe/go-demo/demo/sdk/es"
 	"github.com/UndertaIe/go-demo/demo/sdk/gorm"
 	"github.com/UndertaIe/go-demo/demo/sdk/grpc"
 	"github.com/UndertaIe/go-demo/demo/sdk/grpc/helloworld"
@@ -44,4 +45,5 @@ func main() {
 	demo.Fire(demo.Rdemo, new(grpc.G))
 	demo.Fire(demo.Rdemo, new(helloworld.H))
 	demo.Fire(demo.Rdemo, new(parser.Parser))
+	demo.Fire(demo.Rdemo, new(es.ES))
 }
