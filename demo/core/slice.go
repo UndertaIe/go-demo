@@ -59,3 +59,15 @@ func (c Core) RightCopy() {
 	fmt.Println("after copy, dst: ", dst)
 } // [1 2 3]
 // [1 2 3]
+
+func (Core) Grow() {
+	s := make([]int32, 3)
+	fmt.Println(s, len(s), cap(s))
+	s = append(s, 1, 2, 3, 4, 5, 6)
+	fmt.Println(s, len(s), cap(s))
+
+	s2 := make([]int, 3)
+	fmt.Println(s2, len(s), cap(s2))
+	s2 = append(s2, 1, 2, 3, 4, 5, 6)
+	fmt.Println(s2, len(s2), cap(s2))
+}
