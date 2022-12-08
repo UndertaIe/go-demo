@@ -40,6 +40,11 @@ func (c Core) WithCancel() {
 			break
 		}
 	}
+	fmt.Println(ctx.Deadline())
+	fmt.Println(ctx.Err())
+	cancel()
+	fmt.Println(ctx.Deadline())
+	fmt.Println(ctx.Err())
 }
 
 func (c Core) WithCancelOfContext() {

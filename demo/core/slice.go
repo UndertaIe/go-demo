@@ -71,3 +71,27 @@ func (Core) Grow() {
 	s2 = append(s2, 1, 2, 3, 4, 5, 6)
 	fmt.Println(s2, len(s2), cap(s2))
 }
+
+// 切片通过下标访问数组元素时不能下标大小不能大于slice len
+func (Core) OutOfIndex() {
+	s := make([]int, 3, 5)
+	fmt.Println(s, cap(s), len(s))
+	s[0] = 2
+	fmt.Println(s, cap(s), len(s))
+	s[4] = 2
+	fmt.Println(s, cap(s), len(s))
+} // panic: runtime error: index out of range [4] with length 3
+
+// 通过切片创建的切片在未扩容前使用的是同一块内存区域，也就是指针指向了同一个数组
+func (Core) InitWithArray() {
+	arr := []int{1, 2, 3, 4, 5, 6}
+	fmt.Println("arr: ", arr, cap(arr), len(arr)) //arr:  [1 2 3 4 5 6] 6 6
+	s1 := arr[2:4]
+	fmt.Println("s1: ", s1, cap(s1), len(s1)) // s1:  [3 4] 4 2
+	s1[1] = 9
+	fmt.Println("arr:", arr) // arr: [1 2 3 9 5 6]
+	fmt.Println("s1: ", s1)  // s1:  [3 9]
+	arr = append(arr, 10)    // arr扩容后，数组指针指向了跟s1不同的数组
+	fmt.Println("arr: ", arr, cap(arr), len(arr))
+	fmt.Println("s1: ", s1, cap(s1), len(s1))
+}
