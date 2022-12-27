@@ -27,7 +27,7 @@ func (c Core) SetMakeMap() {
 	if m == nil {
 		fmt.Println("sli is nil")
 	}
-	m = make(map[string]int)
+	// m = make(map[string]int)
 	m["1"] = 2
 	fmt.Println(m)
 } // panic: assignment to entry in nil map

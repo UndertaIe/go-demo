@@ -5,6 +5,47 @@ import (
 	"time"
 )
 
+// select的四种用法
+
+// 阻塞当前goroutine，让出P使用权，无法被唤醒
+func (Core) Select1() {
+	fmt.Println("start to select")
+	select {}
+	fmt.Println("never reaches the line!")
+}
+
+// 阻塞当前goroutine, 发送单一channel后继续执行
+func (Core) Select2() {
+	fmt.Println("start to select")
+	ch := make(chan int)
+	go func() {
+		time.Sleep(3 * time.Second)
+		ch <- 999
+	}()
+	var i int
+	select {
+	case i = <-ch:
+		fmt.Println("received data: ", i)
+	}
+	fmt.Println("end")
+}
+
+// 阻塞当前goroutine, 接收单一channel后继续执行
+func (Core) Select3() {
+	fmt.Println("start to select")
+	ch := make(chan int)
+	go func() {
+		time.Sleep(3 * time.Second)
+		fmt.Println("received data: ", <-ch)
+	}()
+	var i int = 999
+	select {
+	case ch <- i: // send data to channel
+		fmt.Println("send data: ", i)
+	}
+	fmt.Println("end")
+}
+
 // select case 代码块随机 接收发送多个channel，防止饥饿问题
 func (c Core) Select() {
 	sender1 := make(chan int)
