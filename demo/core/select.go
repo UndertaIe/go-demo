@@ -112,3 +112,7 @@ func (Core) CloseChannel() {
 	fmt.Println(i2, ok)
 	fmt.Println("step 2 finish")
 }
+
+func (Core) BlankSelect() {
+	select {}
+}
