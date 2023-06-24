@@ -9,7 +9,7 @@ func NewRedisConn() (redis.Conn, error) {
 	return conn, err
 }
 
-func init() {
+func initRedis() {
 	var err error
 	RedisConn, err = NewRedisConn()
 	if err != nil {

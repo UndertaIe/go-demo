@@ -24,7 +24,7 @@ func NewDBEngine() (*gorm.DB, error) {
 	return db.Debug(), nil // Debug可以打印调用方法和sql语句
 }
 
-func init() {
+func initMySQL() {
 	var err error
 	Db, err = NewDBEngine()
 	if err != nil {

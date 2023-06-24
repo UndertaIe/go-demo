@@ -1,6 +1,6 @@
 package gomicro
 
-import "go-micro.dev/v4"
+import micro "go-micro.dev/v4"
 
 func (Gomicro) Demo() {
 	// create a new service

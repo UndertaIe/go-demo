@@ -13,6 +13,7 @@ import (
 	"github.com/UndertaIe/go-demo/demo/sdk/grpc/helloworld"
 	"github.com/UndertaIe/go-demo/demo/sdk/jaeger"
 	"github.com/UndertaIe/go-demo/demo/sdk/logger"
+	"github.com/UndertaIe/go-demo/demo/sdk/mongo"
 	"github.com/UndertaIe/go-demo/demo/sdk/parser"
 	"github.com/UndertaIe/go-demo/demo/sdk/prometheus"
 	"github.com/UndertaIe/go-demo/demo/sdk/protocolbuffer"
@@ -50,4 +51,6 @@ func main() {
 	demo.Fire(demo.Rdemo, new(es.ES))
 	demo.Fire(demo.Rdemo, new(ginsdk.Gin))
 	demo.Fire(demo.Rdemo, new(gomicro.Gomicro))
+	demo.Fire(demo.Rdemo, new(mongo.Mongo))
+
 }

@@ -11,7 +11,7 @@ import (
 func (Core) Select1() {
 	fmt.Println("start to select")
 	select {}
-	fmt.Println("never reaches the line!")
+	// fmt.Println("never reaches the line!")
 }
 
 // 阻塞当前goroutine, 发送单一channel后继续执行
